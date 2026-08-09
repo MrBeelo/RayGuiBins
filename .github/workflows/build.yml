@@ -60,5 +60,12 @@ jobs:
           libxcursor-dev \
           libxinerama-dev
 
+      - name: Setup emsdk
+        if: matrix.target_os == 'wasm'
+        uses: emscripten-core/setup-emsdk@v15
+        with:
+          version: 5.0.3
+          actions-cache-folder: 'emsdk-cache'
+
       - name: Build
         run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }}
