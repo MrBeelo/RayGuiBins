@@ -35,7 +35,7 @@ jobs:
             compiler: cl
             archive: lib
 
-          - os: windows-latest
+          - os: windows-11-arm
             target_os: windows
             target_platform: winarm64_msvc16
             compiler: cl
