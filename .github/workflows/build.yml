@@ -48,7 +48,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Linux Deps
+      - name: Setup windows
+        if: matrix.target_os == 'windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Setup linux
         if: matrix.target_os == 'linux'
         run: |
           sudo apt-get update
@@ -60,7 +64,7 @@ jobs:
           libxcursor-dev \
           libxinerama-dev
 
-      - name: Setup emsdk
+      - name: Setup wasm
         if: matrix.target_os == 'wasm'
         uses: emscripten-core/setup-emsdk@v15
         with:
