@@ -1,0 +1,52 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+  release:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target_os: linux
+            target_platform: linux_amd64
+
+          - os: ubuntu-latest
+            target_os: linux
+            target_platform: linux_arm64
+
+          - os: ubuntu-latest
+            target_os: linux
+            target_platform: linux_i386
+
+          - os: windows-latest
+            target_os: windows
+            target_platform: win64_msvc16
+
+          - os: windows-latest
+            target_os: windows
+            target_platform: winarm64_msvc16
+
+          - os: windows-latest
+            target_os: windows
+            target_platform: win32_msvc16
+
+          - os: macos-latest
+            target_os: macos
+            target_platform: macos
+
+          - os: ubuntu-latest
+            target_os: wasm
+            target_platform: webassembly
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }}
