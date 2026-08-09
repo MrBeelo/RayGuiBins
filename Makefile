@@ -14,12 +14,12 @@ build-windows:
 	mkdir -p bin/$(TARGET_PLATFORM)/
 
 	# SHARED
-	$(CC) /O2 /D_USRDLL /D_WINDLL /DRAYGUI_IMPLEMENTATION /DBUILD_LIBTYPE_SHARED raygui.c /LD /Febin/$(TARGET_PLATFORM)/raygui.dll /link /LIBPATH lib/$(TARGET_PLATFORM)/raylibdll.lib msvcrt.lib winmm.lib gdi32.lib user32.lib shell32.lib /subsystem:windows
+	$(CC) /O2 /MD /D_USRDLL /D_WINDLL /DRAYGUI_IMPLEMENTATION /DBUILD_LIBTYPE_SHARED raygui.c /LD /Febin/$(TARGET_PLATFORM)/raygui.dll /link /LIBPATH lib/$(TARGET_PLATFORM)/raylibdll.lib winmm.lib gdi32.lib user32.lib shell32.lib /subsystem:windows
 	mv bin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/rayguidll.lib
 
 	# STATIC
-	$(CC) /c raygui.c /Fobin/$(TARGET_PLATFORM)/raygui.obj /LIBPATH lib/$(TARGET_PLATFORM)/raylib.lib /DRAYGUI_IMPLEMENTATION
-	$(AR) /OUTbin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/raygui.obj msvcrt.lib winmm.lib gdi32.lib user32.lib shell32.lib /subsystem:windows
+	$(CC) /c /MT raygui.c /Fobin/$(TARGET_PLATFORM)/raygui.obj /DRAYGUI_IMPLEMENTATION
+	$(AR) /OUTbin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/raygui.obj
 	rm bin/$(TARGET_PLATFORM)/raygui.obj
 	
 	mv raygui.c raygui.h
