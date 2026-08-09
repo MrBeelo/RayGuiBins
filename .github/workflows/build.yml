@@ -49,6 +49,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Linux Deps
+        if: matrix.target_os == 'linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
