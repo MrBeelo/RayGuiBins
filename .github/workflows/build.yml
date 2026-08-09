@@ -53,7 +53,7 @@ jobs:
 
       - name: Setup windows
         if: matrix.target_os == 'windows'
-        uses: ilammy/msvc-dev-cmd@v1
+        uses: TheMrMilchmann/setup-msvc-dev@v4
         with:
           arch: ${{ matrix.msvc_arch }}
 
