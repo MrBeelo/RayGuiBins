@@ -25,10 +25,10 @@ build-macos:
 	mkdir -p bin/$(TARGET_PLATFORM)/
 
 	# SHARED
-	gcc -O2 -dynamiclib -o bin/$(TARGET_PLATFORM)/libraygui.5.0.0.dylib raygui.c -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib -framework OpenGL -lm -lpthread -ldl
+	gcc -O2 -dynamiclib -o bin/$(TARGET_PLATFORM)/libraygui.5.0.0.dylib raygui.c -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib -framework OpenGL -framework CoreFoundation -lm -lpthread -ldl
 
 	# STATIC
-	clang -O2 -c raygui.c -o bin/$(TARGET_PLATFORM)/raygui.o -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib -framework OpenGL -lm -lpthread -ldl
+	clang -O2 -c raygui.c -o bin/$(TARGET_PLATFORM)/raygui.o -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib -framework OpenGL -framework CoreFoundation -lm -lpthread -ldl
 	ar rcs bin/$(TARGET_PLATFORM)/libraygui.a bin/$(TARGET_PLATFORM)/raygui.o
 	rm bin/$(TARGET_PLATFORM)/raygui.o
 	
