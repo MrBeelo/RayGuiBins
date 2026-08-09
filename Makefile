@@ -19,7 +19,7 @@ build-windows:
 
 	# STATIC
 	$(CC) /c /MT raygui.c /Fobin/$(TARGET_PLATFORM)/raygui.obj /DRAYGUI_IMPLEMENTATION
-	$(AR) /OUTbin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/raygui.obj
+	$(AR) /OUT:bin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/raygui.obj
 	rm bin/$(TARGET_PLATFORM)/raygui.obj
 	
 	mv raygui.c raygui.h
