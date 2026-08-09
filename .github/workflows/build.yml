@@ -48,5 +48,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Linux Deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+          libgl1-mesa-dev \
+          libx11-dev \
+          libxrandr-dev \
+          libxi-dev \
+          libxcursor-dev \
+          libxinerama-dev
+
       - name: Build
         run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }}
