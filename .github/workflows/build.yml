@@ -30,18 +30,21 @@ jobs:
             archive: ar
 
           - os: windows-latest
+            msvc_arch: x64
             target_os: windows
             target_platform: win64_msvc16
             compiler: cl
             archive: lib
 
           - os: windows-11-arm
+            msvc_arch: arm64
             target_os: windows
             target_platform: winarm64_msvc16
             compiler: cl
             archive: lib
 
           - os: windows-latest
+            msvc_arch: x86
             target_os: windows
             target_platform: win32_msvc16
             compiler: cl
@@ -67,6 +70,8 @@ jobs:
       - name: Setup windows
         if: matrix.target_os == 'windows'
         uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.msvc_arch }}
 
       - name: Setup linux
         if: matrix.target_os == 'linux'
