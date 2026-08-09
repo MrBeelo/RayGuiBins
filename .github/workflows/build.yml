@@ -14,34 +14,50 @@ jobs:
           - os: ubuntu-latest
             target_os: linux
             target_platform: linux_amd64
+            compiler: gcc
+            archive: ar
 
-          - os: ubuntu-latest
+          - os: ubuntu-24.04-arm
             target_os: linux
             target_platform: linux_arm64
+            compiler: gcc
+            archive: ar
 
           - os: ubuntu-latest
             target_os: linux
             target_platform: linux_i386
+            compiler: gcc
+            archive: ar
 
           - os: windows-latest
             target_os: windows
             target_platform: win64_msvc16
+            compiler: cl
+            archive: lib
 
           - os: windows-latest
             target_os: windows
             target_platform: winarm64_msvc16
+            compiler: cl
+            archive: lib
 
           - os: windows-latest
             target_os: windows
             target_platform: win32_msvc16
+            compiler: cl
+            archive: lib
 
           - os: macos-latest
             target_os: macos
             target_platform: macos
+            compiler: clang
+            archive: ar
 
           - os: ubuntu-latest
             target_os: wasm
             target_platform: webassembly
+            compiler: emcc
+            archive: emar
 
     runs-on: ${{ matrix.os }}
 
@@ -72,4 +88,4 @@ jobs:
           actions-cache-folder: 'emsdk-cache'
 
       - name: Build
-        run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }}
+        run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }} CC=${{ matrix.compiler }} AR=${{ matrix.archive }}
