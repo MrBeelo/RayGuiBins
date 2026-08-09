@@ -33,7 +33,7 @@ build-macos:
 	$(CC) -O2 -dynamiclib -o bin/$(TARGET_PLATFORM)/libraygui.5.0.0.dylib raygui.c -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib -framework OpenGL -framework CoreFoundation -framework CoreGraphics -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL -lm -lpthread -ldl
 
 	# STATIC
-	$(CC) -O2 -c raygui.c -o bin/$(TARGET_PLATFORM)/raygui.o -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib -framework OpenGL -framework CoreFoundation -framework CoreGraphics -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL -lm -lpthread -ldl
+	$(CC) -O2 -c raygui.c -o bin/$(TARGET_PLATFORM)/raygui.o -DRAYGUI_IMPLEMENTATION
 	$(AR) rcs bin/$(TARGET_PLATFORM)/libraygui.a bin/$(TARGET_PLATFORM)/raygui.o
 	rm bin/$(TARGET_PLATFORM)/raygui.o
 	
@@ -62,7 +62,7 @@ build-wasm:
 	mkdir -p bin/$(TARGET_PLATFORM)/
 
 	# STATIC
-	$(CC) -c raygui.c -o bin/$(TARGET_PLATFORM)/raygui.web.o -DRAYGUI_IMPLEMENTATION -L lib/$(TARGET_PLATFORM) -lraylib.web
+	$(CC) -c raygui.c -o bin/$(TARGET_PLATFORM)/raygui.web.o -DRAYGUI_IMPLEMENTATION
 	$(AR) rcs bin/$(TARGET_PLATFORM)/libraygui.web.a bin/$(TARGET_PLATFORM)/raygui.web.o
 	rm bin/$(TARGET_PLATFORM)/raygui.web.o
 	
