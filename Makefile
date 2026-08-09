@@ -10,11 +10,11 @@ build-windows:
 	mkdir -p bin/$(TARGET_PLATFORM)/
 
 	# SHARED
-	cl /O2 /D_USRDLL /D_WINDLL /DRAYGUI_IMPLEMENTATION /DBUILD_LIBTYPE_SHARED raygui.c /LD /Febin/$(TARGET_PLATFORM)/raygui.dll /link /LIBPATH lib/$(TARGET_PLATFORM) msvcrt.lib winmm.lib gdi32.lib user32.lib shell32.lib /subsystem:windows
+	cl /O2 /D_USRDLL /D_WINDLL /DRAYGUI_IMPLEMENTATION /DBUILD_LIBTYPE_SHARED raygui.c /LD /Febin/$(TARGET_PLATFORM)/raygui.dll /link /LIBPATH lib/$(TARGET_PLATFORM)/raylibdll.lib msvcrt.lib winmm.lib gdi32.lib user32.lib shell32.lib /subsystem:windows
 	mv bin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/rayguidll.lib
 
 	# STATIC
-	cl /c raygui.c /Fobin/$(TARGET_PLATFORM)/raygui.obj /LIBPATH lib/$(TARGET_PLATFORM) /DRAYGUI_IMPLEMENTATION
+	cl /c raygui.c /Fobin/$(TARGET_PLATFORM)/raygui.obj /LIBPATH lib/$(TARGET_PLATFORM)/raylib.lib /DRAYGUI_IMPLEMENTATION
 	lib /OUTbin/$(TARGET_PLATFORM)/raygui.lib bin/$(TARGET_PLATFORM)/raygui.obj msvcrt.lib winmm.lib gdi32.lib user32.lib shell32.lib /subsystem:windows
 	rm bin/$(TARGET_PLATFORM)/raygui.obj
 	
