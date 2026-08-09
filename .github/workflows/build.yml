@@ -49,7 +49,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@master
 
       - name: Setup windows
         if: matrix.target_os == 'windows'
@@ -80,7 +80,7 @@ jobs:
         run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }}
       
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: raygui-dev_${{ matrix.target_platform }}
           path: bin/${{ matrix.target_platform }}
