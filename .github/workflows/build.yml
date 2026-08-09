@@ -94,14 +94,9 @@ jobs:
 
       - name: Build
         run: make TARGET_OS=${{ matrix.target_os }} TARGET_PLATFORM=${{ matrix.target_platform }} CC=${{ matrix.compiler }} AR=${{ matrix.archive }}
-
-      - name: Package artifact
-        shell: bash
-        run: |
-          tar -a -c -f raygui-5.0.0_${{ matrix.target_platform }}.zip -C bin ${{ matrix.target_platform }}
       
-      - name: Upload artifact
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: raygui-5.0.0_${{ matrix.target_platform }}
-          path: raygui-5.0.0_${{ matrix.target_platform }}.zip
+          path: bin/${{ matrix.target_platform }}
