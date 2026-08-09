@@ -98,7 +98,7 @@ jobs:
       - name: Package artifact
         shell: bash
         run: |
-          tar -a -c -f ${{ matrix.target_platform }}.zip -C bin/${{ matrix.target_platform }}
+          tar -a -c -f ${{ matrix.target_platform }}.zip -C bin ${{ matrix.target_platform }}
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
