@@ -103,5 +103,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.target_platform }}
-          path: ${{ matrix.target_platform }}.zip
+          name: raygui-5.0.0_${{ matrix.target_platform }}
+          path: raygui-5.0.0_${{ matrix.target_platform }}.zip
